@@ -40,14 +40,9 @@ def getSentence():
 
     #Obtain the sentence structure
     choose = floor(rand() * 100)
-    if choose < 70:
-        NP = getNounPhrase()
-        ss.structure.append(NP)
+    if choose <= 100:
         VP = getVerbPhrase()
         ss.structure.append(VP)
-    elif choose <= 100:
-        NP = getNounPhrase()
-        ss.structure.append(NP)
     
     #Get the word order from the sentence structure
     for structpart in ss.structure:
@@ -60,8 +55,10 @@ def getSentence():
 
     if isDjango == False:    
         print '---- STATS ------'
-        print 'ss.structure: ', ss.listStructure()
-        print 'ss.words: ', ss.words
+        print 'ss.structure: ', 
+        for elem in ss.structure:
+            print elem.listStructure(),
+        print '\nss.words: ', ss.words
         print 'Number of articles:', ss.words.count('art'), \
             '\tadjectives:', ss.words.count('adj'), \
             '\tnouns:', ss.words.count('noun')
@@ -70,69 +67,116 @@ def getSentence():
         print '-----------------'
     
     return ss
-
-def getNounPhrase():
+        
+def getNounPhrase(simple = False):
     NP = NounPhrase()
 
-    #Obtain the phrase structure
+    #Select the phrase structure
     choose = floor(rand() * 100)
-    if choose < 40:
-        ART = getWord('art')
-        NOUN = getWord('noun')
-        NP.structure += [ART, NOUN] 
-    elif choose < 70:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        NOUN = getWord('noun')
-        NP.structure += [ART, ADJ, NOUN]
-    elif choose < 90:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        ADJ2 = getWord('adj')
-        NOUN = getWord('noun')
-        NP.structure += [ART, ADJ, ADJ2, NOUN]
-    elif choose < 100:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        ADJ2 = getWord('adj')
-        ADJ3 = getWord('adj')
-        NOUN = getWord('noun')
-        NP.structure += [ART, ADJ, ADJ2, ADJ3, NOUN]
-    #print 'NP structure: ', NP.listStructure()
     
+    if simple == True:
+        #Function call requested a simple NounPhrase
+        choose = 0
+        
+    #Obtain the phrase structure
+    if choose < 75:
+        NP.structure += getOrnateNoun()
+    else:
+        NP.structure = getOrnateNoun()     
+        NP.structure += getFancyNoun()
+    #print 'NP structure: ', NP.listStructure()
+        
     #Obtain the words for the Noun Phrase
     for structpart in NP.structure:
-        NP.words += [structpart.type]
+        if structpart.type == 'NP':
+            NP.words += structpart.words
+        else:
+            NP.words += [structpart.type]
     #print 'NP.words: ', NP.words
     
     #Render the phrase content
     for structpart in NP.structure:
-        NP.content += [structpart.word]    
+        if structpart.type == 'NP':
+            NP.content += structpart.content
+        else:
+            NP.content += [structpart.word]
     #print 'NP.content: ', NP.content
     
     NP = NPRules(NP)
     
     return NP
 
-def getVerbPhrase():
-    VP = VerbPhrase()
-
-    #Obtain the phrase structure
+def getFancyNoun():
     choose = floor(rand() * 100)     
-    if choose < 25:
+    if choose < 50:
         NP = getNounPhrase()
         PRE = getWord('pre')
-        VP.structure = [PRE, NP]
-    elif choose < 50:
+        structure = [PRE, NP]
+    elif choose < 75:
         NP = getNounPhrase()
         PRO = getWord('pro')
         VRB = getWord('vrb')
-        VP.structure = [PRO, VRB, NP]
+        structure = [PRO, VRB, NP]
     elif choose < 100:
         NP = getNounPhrase()
         PRO = getWord('pro')
         VRB = getWord('vrb')
-        VP.structure = [PRO, NP, VRB]
+        structure = [PRO, NP, VRB]
+    
+    return structure   
+
+
+def getOrnateNoun():
+    structure = []
+    
+    choose = floor(rand() * 100)
+    if choose < 60:
+        ART = getWord('art')
+        NOUN = getWord('noun')
+        structure += [ART, NOUN] 
+    elif choose < 85:
+        ART = getWord('art')
+        ADJ = getWord('adj')
+        NOUN = getWord('noun')
+        structure += [ART, ADJ, NOUN]
+    elif choose < 97:
+        ART = getWord('art')
+        ADJ = getWord('adj')
+        ADJ2 = getWord('adj')
+        NOUN = getWord('noun')
+        structure += [ART, ADJ, ADJ2, NOUN]
+    elif choose < 100:
+        ART = getWord('art')
+        ADJ = getWord('adj')
+        ADJ2 = getWord('adj')
+        ADJ3 = getWord('adj')
+        NOUN = getWord('noun')
+        structure += [ART, ADJ, ADJ2, ADJ3, NOUN]
+        
+    return structure
+ 
+def getVerbPhrase():
+    VP = VerbPhrase()
+        
+    #Obtain the phrase structure
+    '''
+    TODO:   Need more VP structures
+         1. NP VRB ON.   e.g. "The cow that jumped over the moon ate the carrot.
+         2. ON VRB NP.
+    '''
+
+    choose = floor(rand() * 100)
+    VP.structure = []
+    if choose < 75:
+        NP = getNounPhrase()
+        VRB = getWord('vrb')
+        ON = getNounPhrase(True) 
+        VP.structure = [NP, VRB, ON]
+    elif choose < 100:
+        ON = getNounPhrase(True)
+        VRB = getWord('vrb')
+        NP = getNounPhrase() 
+        VP.structure = [ON, VRB, NP]
     #print 'VP structure: ', VP.listStructure()
      
     #Obtain the words for the Verbphrase
@@ -160,9 +204,13 @@ def NPRules(NP):
         ind = NP.words.index('art')
         if NP.content[ind] == 'a':
             aa = NP.content[ind+1][0]
-            if (aa == 'a') or (aa == 'e') or (aa == 'i') or (aa == 'o') or (aa == 'u') or (aa == 'y'):
+            if ((aa == 'a') or (aa == 'e') or (aa == 'i') or (aa == 'o') or  
+                (aa == 'u') or (aa == 'y')):
                 NP.content[ind] = 'an'
-        
+    
+    #TODO: Comma rule
+    # Comma structure when Fancy Noun contains Ornate Noun?
+      
     return NP
     
 def getWord(pos):
