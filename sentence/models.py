@@ -51,3 +51,6 @@ class Pronoun(Word):
 class Article(Word):
     pass
 
+class Adverb(Word):
+    pass
+

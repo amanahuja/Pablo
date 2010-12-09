@@ -17,7 +17,7 @@ except ImportError:
     from pylab import rand, floor
    
 def prepData():
-    global nouns, verbs, adjectives, prepositions, pronouns, articles
+    global nouns, verbs, adjectives, prepositions, pronouns, articles, adverbs
 
     try:     
         nounfile = open('pos/nouns.txt', 'r')
@@ -43,12 +43,17 @@ def prepData():
         artfile = open('pos/articles.txt', 'r')
         articles = artfile.readlines()
         artfile.close()
+        
+        advfile = open('pos/adverbs.txt', 'r')
+        adverbs = advfile.readlines()
+        advfile.close()
+        
     except IOError:
         print "POS files not found. Using Test Data."
         prepTestData()
         
 def prepTestData():
-    global nouns, verbs, adjectives, prepositions, pronouns, articles
+    global nouns, verbs, adjectives, prepositions, pronouns, articles, adverbs
 
     nouns = ['cow\n', 'apple']
     verbs = ['ate\n']
@@ -56,6 +61,7 @@ def prepTestData():
     prepositions = ['on\n']
     pronouns = ['that\n']
     articles = ['the\n', 'a']
+    adverbs = ['casually','secretly']
     
 def getArticle(): 
     choose = int(floor(rand() * len(articles)))
@@ -81,6 +87,10 @@ def getVerb():
     choose = int(floor(rand() * len(verbs)))
     return verbs[choose]
 
+def getAdverb():
+    choose = int(floor(rand() * len(adverbs)))
+    return adverbs[choose]
+
 def formatString(sentence):
     ss = ''
     for ii in range(len(sentence)):
@@ -91,4 +101,3 @@ def formatString(sentence):
     ss = ss.strip()
     ss += '.'
     return ss
-

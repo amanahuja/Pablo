@@ -120,3 +120,11 @@ class RelPronoun(Word):
     def fetch(self):
         self.word = getRelativePronoun()    
 
+class Adverb(Word):
+    def __init__(self):
+        self.type = 'adv'
+        self.fetch()
+        
+    def fetch(self):
+        self.word = getAdverb()    
+

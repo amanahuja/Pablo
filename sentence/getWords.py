@@ -54,6 +54,13 @@ def getVerb():
     word_sel = str(word_sel)
     return word_sel
 
+def getAdverb():
+    nwords = Adverb.objects.count()
+    choose = int(floor(rand() * nwords))
+    word_sel = Adverb.objects.all()[choose].word
+    word_sel = str(word_sel)
+    return word_sel
+
 def formatString(sentence):
     ss = ''
     for ii in range(len(sentence)):
@@ -64,4 +71,3 @@ def formatString(sentence):
     ss = ss.strip()
     ss += '.'
     return ss
-

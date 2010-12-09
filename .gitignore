@@ -1,0 +1,6 @@
+db/
+apache/
+.bkup*
+*.pyc
+*.swp
+sentence/tests.py
