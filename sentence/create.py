@@ -172,19 +172,22 @@ def getVerbPhrase():
         VRB = getWord('vrb')
         ON = getNounPhrase(True) 
         VP.structure = [NP, VRB, ON]
-    elif choose < 90:
+    elif choose < 100:
         ON = getNounPhrase(True)
         VRB = getWord('vrb')
         NP = getNounPhrase() 
         VP.structure = [ON, VRB, NP]
-    elif choose < 100:
-        ON = getNounPhrase(True)
-        ADV = getWord('adv')
-        VRB = getWord('vrb')
-        NP = getNounPhrase() 
-        VP.structure = [ON, ADV, VRB, NP]
-    #print 'VP structure: ', VP.listStructure()
      
+    #Add an Adverb?
+    choose = floor(rand() * 100)
+    if choose < 30: 
+        #yes! add an adverb!
+        ind = VP.structure.index(VRB)
+        ADV = getWord('adv')
+        VP.structure.insert(ind, ADV)
+
+    #print 'VP structure: ', VP.listStructure()
+
     #Obtain the words for the Verbphrase
     for structpart in VP.structure:
         if structpart.type == 'NP':
