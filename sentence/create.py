@@ -167,16 +167,22 @@ def getVerbPhrase():
 
     choose = floor(rand() * 100)
     VP.structure = []
-    if choose < 75:
+    if choose < 65:
         NP = getNounPhrase()
         VRB = getWord('vrb')
         ON = getNounPhrase(True) 
         VP.structure = [NP, VRB, ON]
-    elif choose < 100:
+    elif choose < 90:
         ON = getNounPhrase(True)
         VRB = getWord('vrb')
         NP = getNounPhrase() 
         VP.structure = [ON, VRB, NP]
+    elif choose < 100:
+        ON = getNounPhrase(True)
+        ADV = getWord('adv')
+        VRB = getWord('vrb')
+        NP = getNounPhrase() 
+        VP.structure = [ON, ADV, VRB, NP]
     #print 'VP structure: ', VP.listStructure()
      
     #Obtain the words for the Verbphrase
@@ -227,7 +233,9 @@ def getWord(pos):
         word_sel = Preposition()
     elif pos == 'pro':
         word_sel = RelPronoun()
-        
+    elif pos == 'adv':
+        word_sel = Adverb()    
+
     else: 
         #Exception -- invalid part of speech
         word_sel = Word()
