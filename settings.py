@@ -1,12 +1,13 @@
 # Django settings for pablo project.
 
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+# "Testing"
+#DEBUG = True
+#TEMPLATE_DEBUG = DEBUG
 
 # "Production"
-# DEBUG = False
-# TEMPLATE_DEBUG = False #DEBUG
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ADMINS = (
     # ('Aman', 'amanahuja@gmail.com'),
