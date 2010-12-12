@@ -34,7 +34,7 @@
 	<form name="saveform" action="/store/" method="post">
 	{% csrf_token %}
 	<input name="saved" type=hidden value="{{sentence}}">
-	<span style="font-weight:bold;cursor: pointer;" onClick="document.saveform.submit();">Save</span>
+	<span class="savelink" onClick="document.saveform.submit();">Save</span>
 	</form>
     </div>
     <br />

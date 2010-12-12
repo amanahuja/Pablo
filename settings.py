@@ -63,6 +63,10 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/pablomedia/admin/'
 
+#Cache backend settings
+CACHE_BACKEND = 'db://cache_table'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = ')KJDSHF(*&@#$haodf87134hf91823hvc183&(#$!@$hf'
 
