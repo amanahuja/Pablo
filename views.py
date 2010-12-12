@@ -61,8 +61,11 @@ def vote(request, sid):
     Redirect View only
     '''
     s = Bestseller.objects.get(id=sid)
-    s.votes = s.votes + 1
-    s.save()
+    
+    if not 'has_voted' in request.session:
+        s.votes = s.votes + 1
+        s.save()
+        request.session['has_voted'] = True
 
     return HttpResponseRedirect(reverse('pablo.views.saved', args=(s.id,)))
 
