@@ -5,9 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <META name="description" content="This is what Pablo says." />
 <meta property="og:title" content="what Pablo said"/>
+<meta property="og:type" content="website" />
 <meta property="og:site_name" content="What did Pablo say?"/>
 <meta property="fb:admins" content="29101291" />
-<link rel="shortcut icon" href="http://thesexycow.com/pablomedia/images/favicon.ico">
+<meta property="fb:app_id" content="148028878582803" />
+<meta property="og:image" content="http://thesexycow.com/pablomedia/images/pablobubble.png" />
+<link rel="shortcut icon" href="http://thesexycow.com/pablomedia/images/pablobubble_icon.png" />
 <LINK href="/pablomedia/style.css" rel="stylesheet" type="text/css">
 <title>Pablo says</title>
 </head>
@@ -27,7 +30,15 @@
 </div>
 
 <div class="footer">
-    <div id="refresh"><A HREF="/">more</A></div>
+    <div class="option">
+	<form name="saveform" action="/store/" method="post">
+	{% csrf_token %}
+	<input name="saved" type=hidden value="{{sentence}}">
+	<span style="font-weight:bold;cursor: pointer;" onClick="document.saveform.submit();">Save</span>
+	</form>
+    </div>
+    <br />
+    <div class="option"><A HREF="/">Get new</A></div>
     <div class="rightfoot">
         <div class="fblike">
 <iframe src="http://www.facebook.com/plugins/like.php?href=thesexycow.com&amp;layout=standard&amp;show_faces=true&amp;width=200&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:80px;" allowTransparency="true"></iframe>
