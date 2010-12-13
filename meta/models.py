@@ -9,3 +9,6 @@ class Bestseller(models.Model):
     def __unicode__(self):
         return str(self.sentence)
 
+    def get_absolute_url(self):
+        return "/saved/%i/" % self.id
+

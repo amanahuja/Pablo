@@ -62,10 +62,11 @@ def vote(request, sid):
     '''
     s = Bestseller.objects.get(id=sid)
     
-    if not 'has_voted' in request.session:
+    votechk = 'has_voted_' + str(sid)
+    if not votechk in request.session:
         s.votes = s.votes + 1
         s.save()
-        request.session['has_voted'] = True
+        request.session[votechk] = True
 
     return HttpResponseRedirect(reverse('pablo.views.saved', args=(s.id,)))
 
@@ -80,6 +81,14 @@ def saved(request, sid):
                         'save_date': saved.save_date,
                         'votes': saved.votes,
                         'sid': saved.id})
+
+def savedlist(request):
+    '''
+    Display a list of saved sentences
+    '''
+    bslist = Bestseller.objects.extra(order_by = ['-votes'])
+
+    return render_to_response('bestsellers.html', {'bslist': bslist})
 
 '''
 -----------------------------------------------------------------

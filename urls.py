@@ -20,5 +20,6 @@ urlpatterns = patterns('pablo.views',
     (r'^store/', 'store'),                      #Save (store) a sentence
     (r'^vote/(?P<sid>\d+)/$', 'vote'),          #Vote for a sentence
     (r'^saved/(?P<sid>\d+)/$', 'saved'),        #Display a stored sentence
+    (r'^saved/$', 'savedlist'),			#Display a list of saved sentences
 
 )
