@@ -1,18 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- <META name="description" content="{{sentence}}" />
+{% extends "base.html" %}
+{% block meta %}
+<META name="description" content="Pablo's favorite sayings" />
  <meta property="og:title" content="what Pablo said" />
- <meta property="og:site_name" content="TheSexyCow.com" />
- <meta property="fb:admins" content="29101291, 10209248" />
- <link rel="shortcut icon" href="http://thesexycow.com/pablomedia/images/pablobubble_icon.png" />
-<LINK href="/pablomedia/style.css" rel="stylesheet" type="text/css">
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://thesexycow.com/saved/" />
 <title>Pablo sayings</title>
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
 <div class="header"></div>
 <h2>Pablo said...</h2>
 
@@ -25,31 +20,4 @@
 </div>
 {% endfor %}
 </div>
-
-<div class="footer">
-    <div class="option"><A HREF="/">Get new</A></div>
-    <div class="rightfoot">
-        <div class="fblike">
-<iframe src="http://www.facebook.com/plugins/like.php?href=thesexycow.com&amp;layout=standard&amp;show_faces=true&amp;width=200&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:80px;" allowTransparency="true"></iframe>
-        </div>
-        <div class="credits">Made by <a href="#">Arian</a> and <a href="#">Aman.</a></div>
-        <a href="admin">admin</a> | Inspired by <a href="http://whatthefuckshouldimakefordinner.com/" target="new">this</a> and <a href="http://goo.gl/xkl2" target="new">this.</a>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-19283300-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body>
-</html>
-
+{% endblock %}

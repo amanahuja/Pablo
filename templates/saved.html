@@ -1,77 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% extends "base.html" %}
+{% block meta %}
+<META name="description" content="Pablo says: '{{sentence}}' " />
 <meta property="og:title" content="{{sentence}}" />
 <meta property="og:type" content="article" />
-<meta property="og:site_name" content="TheSexyCow.com" />
 <meta property="og:url" content="http://thesexycow.com/saved/{{ sid }}/" />
-<meta property="og:image" content="http://thesexycow.com/pablomedia/images/pablobubble.png" />
-<meta property="fb:admins" content="29101291, 10209248" />
-<meta property="fb:app_id" content="148028878582803" />
-<META name="description" content="Pablo says: '{{sentence}}' " />
-<link rel="shortcut icon" href="http://thesexycow.com/pablomedia/images/pablobubble_icon.png" />
-<LINK href="/pablomedia/style.css" rel="stylesheet" type="text/css">
 <title>Pablo said...</title>
-
 <script type="text/javascript">
 function voteformSubmit(){
 	
  	document.voteform.submit();
-}</script> 
+}</script>
+{% endblock %}
 
-</head>
+{% block content %}
+<div class="header"></div>
+<h2>Saved Sentence</h2>
 
-<body>
-<div class="wrapper">
-
-<div class="content">
-   	<div class="header"></div>
-	<h2>Saved Sentence</h2>
-	
-	<div id="sentence">{{ sentence }}</div>
-	<div class="gamma">
-                <div id="votes">
-			<form name="voteform" action="/vote/{{ sid }}" method="post">
-			{% csrf_token %}
-			<input name="vote" type=hidden value="1" />
-			<span class="votelink" onClick="voteformSubmit();">{{ votes }}</span>
-			</form>
-			Votes
-		</div>
-                <div class="fbshare">
-                        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-                        <fb:like href="http://thesexycow.com/saved/{{ sid }}/" show_faces="true" width="450" font="arial"></fb:like>
-                </div>
-        </div>
-	
+<div id="sentence">{{ sentence }}</div>
+<div class="gamma">
+              <div id="votes">
+	<form name="voteform" action="/vote/{{ sid }}" method="post">
+	{% csrf_token %}
+	<input name="vote" type=hidden value="1" />
+	<span class="votelink" onClick="voteformSubmit();">{{ votes }}</span>
+	</form>
+	Votes
 </div>
-<!-- footer area --> 
-    <div class="push"></div>
+<div class="fbshare">
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+        <fb:like href="http://thesexycow.com/saved/{{ sid }}/" show_faces="true" width="450" font="arial"></fb:like>
 </div>
-
-<div class="footer">
-    <div class="option alone"><A HREF="/">New Sentence</A></div>
-    <div class="rightfoot">
-        <div class="fblike"></div>
-        <div class="credits">Made by <a href="#">Arian</a> and <a href="#">Aman.</a></div>
-        <a href="admin">admin</a> | Inspired by <a href="http://whatthefuckshouldimakefordinner.com/" target="new">this</a> and <a href="http://goo.gl/xkl2" target="new">this.</a>
-    </div>
-</div>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-19283300-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body>
-</html>
-
+      </div>
+{% endblock %}
+{% block leftfoot %} {% endblock %}

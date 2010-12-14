@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta property="og:site_name" content="What did Pablo say?"/>
+        <meta property="fb:admins" content="29101291, 10209248" />
+        <meta property="fb:app_id" content="148028878582803" />
+        <meta property="og:image" content="http://thesexycow.com/pablomedia/images/pablobubble.png" />
+        <link rel="shortcut icon" href="http://thesexycow.com/pablomedia/images/pablobubble_icon.png" />
+        <link href="/pablomedia/style.css" rel="stylesheet" type="text/css">
+        {% block meta %}{% endblock %}
+</head>
+
+<body>
+<div class="wrapper">
+
+        <div class="content">
+        {% block content %}{% endblock %}
+        </div>
+
+        {% block push %}
+        <div class="push"></div>
+        {% endblock %}
+</div>
+
+<!-- footer area -->
+<div class="footer">
+        {% block nav %}
+        <div class="option alone"><A HREF="/">New Sentence</A></div>
+        {% endblock %}
+
+        <div class="footcontainer">
+        	{% block leftfoot %}
+			<div class="fblike">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=thesexycow.com&amp;layout=standard&amp;show_faces=true&amp;width=200&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80"
+			        scrolling="no" frameborder="0"
+			        style="border:none; overflow:hidden; width:200px; height:80px;"
+			        allowTransparency="true"></iframe>
+			</div>
+        	{% endblock %}
+        	<div class="credits">Made by <a href="#">Arian</a> and <a href="#">Aman.</a></div>
+        	<a href="admin">admin</a> | Inspired by <a href="http://whatthefuckshouldimakefordinner.com/" target="new">this</a> and <a href="http://goo.gl/xkl2" target="new">this.</a>
+        </div>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19283300-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
