@@ -1,6 +1,15 @@
-db/
-apache/
-.bkup*
+# File types #
+##############
+*.bkup*
 *.pyc
 *.swp
+
+# Directories #
+###############
+db/
+apache/
+
+# Specific files #
+##################
 sentence/tests.py
+settings.py

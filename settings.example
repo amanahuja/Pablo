@@ -69,7 +69,7 @@ CACHE_BACKEND = 'db://cache_table'
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ')KJDSHF(*&@#$haodf87134hf91823hvc183&(#$!@$hf'
+SECRET_KEY = 'PUT YOUR SECRET KEY HERE'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
