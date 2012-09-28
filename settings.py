@@ -2,12 +2,18 @@
 
 
 # "Testing"
-#DEBUG = True
-#TEMPLATE_DEBUG = DEBUG
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 # "Production"
-DEBUG = False
-TEMPLATE_DEBUG = False
+#DEBUG = False
+#TEMPLATE_DEBUG = False
+
+
+#Relative paths
+import os, django
+DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 ADMINS = (
     # ('Aman', 'amanahuja@gmail.com'),
@@ -18,7 +24,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': '/usr/local/pablo/db/pablo_db',                      
+        'NAME': os.path.join(SITE_ROOT, 'db/') + 'pablo_db',                      
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost.
@@ -49,19 +55,14 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/pablomedia/admin/'
+'''
+Managing static files (updated in django 1.4)
+https://docs.djangoproject.com/en/1.4/howto/static-files/
+https://docs.djangoproject.com/en/1.4/ref/contrib/staticfiles/
+'''
+/STATIC_ROOT = '/pablomedia/'
+STATIC_URL = '/pablomedia/'
+#ADMIN_MEDIA_PREFIX = '/pablomedia/admin/' # DEPRACATED and replaced. 
 
 #Cache backend settings
 CACHE_BACKEND = 'db://cache_table'
@@ -88,8 +89,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'pablo.urls'
 
 TEMPLATE_DIRS = (
-    "/usr/local/pablo/templates",
-    "/usr/local/django_templates",
+    os.path.join(SITE_ROOT, 'templates'),
+    # "/usr/local/django_templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -101,10 +102,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
+    'django.contrib.staticfiles',
+
+    # Admin
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+ 
     'pablo.sentence',
     'pablo.meta',
 )
