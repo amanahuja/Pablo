@@ -3,6 +3,8 @@
 *.bkup*
 *.pyc
 *.swp
+*.tar
+*.gz
 
 # Directories #
 ###############
