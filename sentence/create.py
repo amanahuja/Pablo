@@ -27,7 +27,7 @@ from numpy.random import rand
 from numpy import floor
 
 #options
-showStruct == False
+showStruct = False
 
 def getSentence():
     ss = Sentence()
