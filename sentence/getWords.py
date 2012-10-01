@@ -11,6 +11,7 @@ word lists in a sqlite database.
 from numpy.random import rand
 from numpy import floor
 from pablo.sentence.models import *
+import warnings
 
 def getArticle():
     nwords = Article.objects.count()
@@ -27,10 +28,23 @@ def getAdjective():
     return word_sel
 
 def getNoun():
-    nwords = Noun.objects.count()
-    choose = int(floor(rand() * nwords))
-    word_sel = Noun.objects.all()[choose].word
-    word_sel = str(word_sel)
+
+    useFile = int(floor(rand() * 2))
+    if useFile == 1:
+      wfile = open('pos/nouns.txt', 'r')
+      filewords = wfile.readlines()
+      wfile.close()
+
+      nwords = len(filewords)
+      choose = int(floor(rand() * nwords))
+      word_sel = filewords[choose]
+      warnings.warn('Using word from file: {}.'.format(word_sel))
+    else:
+      nwords = Noun.objects.count()
+      choose = int(floor(rand() * nwords))
+      word_sel = Noun.objects.all()[choose].word
+      word_sel = str(word_sel)
+
     return word_sel
 
 def getRelativePronoun():    
