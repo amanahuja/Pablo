@@ -10,6 +10,10 @@ feedurls = [
   'http://www.nytimes.com/services/xml/rss/nyt/GlobalHome.xml',
   'http://rss.cnn.com/rss/cnn_topstories.rss',
   'http://feeds.bbci.co.uk/news/world/rss.xml',
+  'http://www.npr.org/rss/rss.php?id=1004',
+  'http://feeds.reuters.com/reuters/worldNews',
+  'http://rss.msnbc.msn.com/id/3032506/device/rss/rss.xml',
+  'http://feeds.washingtonpost.com/rss/world',
   ]
 
 
