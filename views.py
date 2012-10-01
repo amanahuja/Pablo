@@ -2,7 +2,6 @@
 """
 Views.py 
 Created on Nov 3, 2010
-    modified Nov 5th to run on both Django and local installs
 
 @author: Aman
 """
@@ -14,10 +13,6 @@ from django.core.urlresolvers import reverse
 
 from pablo.sentence.create import *
 from pablo.meta.models import *
-
-#from create import getSentence 
-#import getFileWords
-#from getFileWords import formatString, prepTestData, prepData
 
 def index(request):
 
@@ -75,20 +70,3 @@ def savedlist(request):
 
     return render_to_response('bestsellers.html', {'bslist': bslist})
 
-'''
------------------------------------------------------------------
-Local non-Django environment execution
-
-def main():
-    #getFileWords.prepData()
-    getFileWords.prepTestData()
-    
-    sentence = getSentence()
-    sentence = sentence.content
-    sentence = getFileWords.formatString(sentence)
-    print sentence
-
-if __name__ == "__main__":
-    for ii in range(10):
-        main()
-'''
