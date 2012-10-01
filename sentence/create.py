@@ -10,7 +10,7 @@ several levels:
     * Phrase
     * Word
 
-The actual words are fetched from getWords / getFileWords. 
+The actual words are fetched from GetWords / getFileWords. 
 See the GEB Flowchart for the recursive transition network (RTN) on which the
 algorithm is based. 
 
@@ -20,22 +20,22 @@ TODO:
 @authors: Aman
 '''
 
-from pablo.sentence.wordStructures import *
+from pablo.sentence.WordStructures import *
 #isDjango = False <-- from wordStructures import *
 
 from numpy.random import rand
 from numpy import floor
 
 #options
-showStruct = False
+show_struct = False
 
-def getSentence():
+def get_sentence():
     ss = Sentence()
 
     #Obtain the sentence structure
     choose = floor(rand() * 100)
     if choose <= 100:
-        VP = getVerbPhrase()
+        VP = get_verb_phrase()
         ss.structure.append(VP)
     
     #Get the word order from the sentence structure
@@ -46,7 +46,7 @@ def getSentence():
     for structpart in ss.structure:
         ss.content += structpart.content
                
-    if showStruct == True:    
+    if show_struct == True:    
         print '---- STATS ------'
         print 'ss.structure: ', 
         for elem in ss.structure:
@@ -61,7 +61,7 @@ def getSentence():
     
     return ss
         
-def getNounPhrase(simple = False):
+def get_noun_phrase(simple = False):
     NP = NounPhrase()
 
     #Select the phrase structure
@@ -73,10 +73,10 @@ def getNounPhrase(simple = False):
         
     #Obtain the phrase structure
     if choose < 75:
-        NP.structure += getOrnateNoun()
+        NP.structure += get_ornate_noun()
     else:
-        NP.structure = getOrnateNoun()     
-        NP.structure += getFancyNoun()
+        NP.structure = get_ornate_noun()     
+        NP.structure += get_fancy_noun()
     #print 'NP structure: ', NP.listStructure()
         
     #Obtain the words for the Noun Phrase
@@ -99,56 +99,55 @@ def getNounPhrase(simple = False):
     
     return NP
 
-def getFancyNoun():
+def get_fancy_noun():
     choose = floor(rand() * 100)     
     if choose < 50:
-        NP = getNounPhrase()
-        PRE = getWord('pre')
+        NP = get_noun_phrase()
+        PRE = get_word('pre')
         structure = [PRE, NP]
     elif choose < 75:
-        NP = getNounPhrase()
-        PRO = getWord('pro')
-        VRB = getWord('vrb')
+        NP = get_noun_phrase()
+        PRO = get_word('pro')
+        VRB = get_word('vrb')
         structure = [PRO, VRB, NP]
     elif choose < 100:
-        NP = getNounPhrase()
-        PRO = getWord('pro')
-        VRB = getWord('vrb')
+        NP = get_noun_phrase()
+        PRO = get_word('pro')
+        VRB = get_word('vrb')
         structure = [PRO, NP, VRB]
     
     return structure   
 
-
-def getOrnateNoun():
+def get_ornate_noun():
     structure = []
     
     choose = floor(rand() * 100)
     if choose < 60:
-        ART = getWord('art')
-        NOUN = getWord('noun')
+        ART = get_word('art')
+        NOUN = get_word('noun')
         structure += [ART, NOUN] 
     elif choose < 85:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        NOUN = getWord('noun')
+        ART = get_word('art')
+        ADJ = get_word('adj')
+        NOUN = get_word('noun')
         structure += [ART, ADJ, NOUN]
     elif choose < 97:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        ADJ2 = getWord('adj')
-        NOUN = getWord('noun')
+        ART = get_word('art')
+        ADJ = get_word('adj')
+        ADJ2 = get_word('adj')
+        NOUN = get_word('noun')
         structure += [ART, ADJ, ADJ2, NOUN]
     elif choose < 100:
-        ART = getWord('art')
-        ADJ = getWord('adj')
-        ADJ2 = getWord('adj')
-        ADJ3 = getWord('adj')
-        NOUN = getWord('noun')
+        ART = get_word('art')
+        ADJ = get_word('adj')
+        ADJ2 = get_word('adj')
+        ADJ3 = get_word('adj')
+        NOUN = get_word('noun')
         structure += [ART, ADJ, ADJ2, ADJ3, NOUN]
         
     return structure
  
-def getVerbPhrase():
+def get_verb_phrase():
     VP = VerbPhrase()
         
     #Obtain the phrase structure
@@ -161,14 +160,14 @@ def getVerbPhrase():
     choose = floor(rand() * 100)
     VP.structure = []
     if choose < 65:
-        NP = getNounPhrase()
-        VRB = getWord('vrb')
-        ON = getNounPhrase(True) 
+        NP = get_noun_phrase()
+        VRB = get_word('vrb')
+        ON = get_noun_phrase(True) 
         VP.structure = [NP, VRB, ON]
     elif choose < 100:
-        ON = getNounPhrase(True)
-        VRB = getWord('vrb')
-        NP = getNounPhrase() 
+        ON = get_noun_phrase(True)
+        VRB = get_word('vrb')
+        NP = get_noun_phrase() 
         VP.structure = [ON, VRB, NP]
      
     #Add an Adverb?
@@ -176,7 +175,7 @@ def getVerbPhrase():
     if choose < 30: 
         #yes! add an adverb!
         ind = VP.structure.index(VRB)
-        ADV = getWord('adv')
+        ADV = get_word('adv')
         VP.structure.insert(ind, ADV)
 
     #print 'VP structure: ', VP.listStructure()
@@ -215,8 +214,8 @@ def NPRules(NP):
       
     return NP
     
-def getWord(pos):
-    #print 'getWord()'
+def get_word(pos):
+    #print 'get_word()'
     if pos == 'art': 
         word_sel = Article()
     elif pos == 'adj':

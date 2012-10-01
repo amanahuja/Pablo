@@ -6,7 +6,7 @@ Created on Nov 13, 2010
 """
 
 #isDjango = True
-from pablo.sentence.getWords import *
+from pablo.sentence.GetWords import *
 
 #isDjango = False <-- from getFileWords import *
 
@@ -76,7 +76,7 @@ class Article(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getArticle()    
+        self.word = get_article()    
     
 class Adjective(Word):
     def __init__(self):
@@ -84,7 +84,7 @@ class Adjective(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getAdjective()    
+        self.word = get_adjective()    
 
 class Noun(Word):
     def __init__(self):
@@ -92,7 +92,7 @@ class Noun(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getNoun()    
+        self.word = get_noun()    
 
 class Verb(Word):
     def __init__(self):
@@ -100,7 +100,7 @@ class Verb(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getVerb()    
+        self.word = get_verb()    
 
 class Preposition(Word):
     def __init__(self):
@@ -108,7 +108,7 @@ class Preposition(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getPreposition()    
+        self.word = get_preposition()    
 
 class RelPronoun(Word):
     def __init__(self):
@@ -116,7 +116,7 @@ class RelPronoun(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getRelativePronoun()    
+        self.word = get_relative_pronoun()    
 
 class Adverb(Word):
     def __init__(self):
@@ -124,5 +124,5 @@ class Adverb(Word):
         self.fetch()
         
     def fetch(self):
-        self.word = getAdverb()    
+        self.word = get_adverb()    
 

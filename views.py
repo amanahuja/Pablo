@@ -17,9 +17,9 @@ from pablo.meta.models import *
 def index(request):
 
     #prepData()
-    sentence = getSentence()
+    sentence = get_sentence()
     sentence = sentence.content
-    sentence = formatString(sentence)
+    sentence = format_string(sentence)
 
     #sentence = "Adjective noun verb preposition article noun."
     return render_to_response('index.html', {'sentence': sentence}, 
