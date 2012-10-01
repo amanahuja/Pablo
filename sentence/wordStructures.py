@@ -5,12 +5,10 @@ Created on Nov 13, 2010
 @author: Aman
 """
 
-try:    
-    isDjango = True
-    from pablo.sentence.getWords import *
-except ImportError: 
-    isDjango = False
-    from getFileWords import *
+#isDjango = True
+from pablo.sentence.getWords import *
+
+#isDjango = False <-- from getFileWords import *
 
 class Sentence:
     def __init__(self): 

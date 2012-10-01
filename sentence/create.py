@@ -20,20 +20,11 @@ TODO:
 @authors: Aman
 '''
 
-#Import Word Lists from Django if available, else use test lists.
-isDjango = True
-try:    
-    from pablo.sentence.wordStructures import *
-except ImportError: 
-    isDjango = False
-    from wordStructures import *
+from pablo.sentence.wordStructures import *
+#isDjango = False <-- from wordStructures import *
 
-#Import numpy or pylab, as available. 
-try: 
-    from numpy.random import rand
-    from numpy import floor
-except ImportError:
-    from pylab import rand, floor
+from numpy.random import rand
+from numpy import floor
 
 def getSentence():
     ss = Sentence()

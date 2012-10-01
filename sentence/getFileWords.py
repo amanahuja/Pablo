@@ -9,13 +9,12 @@ PrepData loads wordlists from text files in folder /pos
 @author: Aman
 """
 
-#Import numpy or pylab, as available. 
-try: 
-    from numpy.random import rand
-    from numpy import floor
-except ImportError:
-    from pylab import rand, floor
-   
+from numpy.random import rand
+from numpy import floor
+ 
+'''
+Depracated. 
+
 def prepData():
     global nouns, verbs, adjectives, prepositions, pronouns, articles, adverbs
 
@@ -101,3 +100,6 @@ def formatString(sentence):
     ss = ss.strip()
     ss += '.'
     return ss
+
+'''
+

@@ -1,39 +1,24 @@
 # -*- coding:utf-8 -*-
 """
+Views.py 
 Created on Nov 3, 2010
     modified Nov 5th to run on both Django and local installs
-
-Views.py 
-Renders primary django views for Pablo
-    index
-Can also be run in test mode on a local machine.
-    Unresolved django imports are substituted by local equivalents.  
 
 @author: Aman
 """
 
-try: 
-    from django.shortcuts import render_to_response
-    from django.template import RequestContext
-    from django.http import HttpResponseRedirect
-    from django.core.urlresolvers import reverse
-    
-    from pablo.sentence.create import *
-    from pablo.meta.models import *
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
-except ImportError:
-    
-    from create import getSentence 
-    import getFileWords
-    
-    # the following import is not redundant
-    from getFileWords import formatString, prepTestData, prepData
+from pablo.sentence.create import *
+from pablo.meta.models import *
 
-'''
------------------------------------------------------------------
-Django views here. 
-'''
-    
+#from create import getSentence 
+#import getFileWords
+#from getFileWords import formatString, prepTestData, prepData
+
 def index(request):
 
     #prepData()
@@ -93,7 +78,6 @@ def savedlist(request):
 '''
 -----------------------------------------------------------------
 Local non-Django environment execution
-'''
 
 def main():
     #getFileWords.prepData()
@@ -107,4 +91,4 @@ def main():
 if __name__ == "__main__":
     for ii in range(10):
         main()
-    
+'''
