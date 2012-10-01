@@ -10,10 +10,6 @@ urlpatterns = patterns('pablo.views',
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Examples:
-    # (r'^mysite/', include('mysite.foo.urls')),
-    #( r'^polls/', include('mysite.polls.urls')),
-
     #Core Pablo
     (r'^$', 'index'),
 

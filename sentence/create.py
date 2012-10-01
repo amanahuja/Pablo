@@ -26,6 +26,9 @@ from pablo.sentence.wordStructures import *
 from numpy.random import rand
 from numpy import floor
 
+#options
+showStruct == False
+
 def getSentence():
     ss = Sentence()
 
@@ -43,8 +46,7 @@ def getSentence():
     for structpart in ss.structure:
         ss.content += structpart.content
                
-
-    if isDjango == False:    
+    if showStruct == True:    
         print '---- STATS ------'
         print 'ss.structure: ', 
         for elem in ss.structure:
