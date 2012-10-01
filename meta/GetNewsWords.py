@@ -9,6 +9,7 @@ new_words = []
 feedurls = [
   'http://www.nytimes.com/services/xml/rss/nyt/GlobalHome.xml',
   'http://rss.cnn.com/rss/cnn_topstories.rss',
+  'http://feeds.bbci.co.uk/news/world/rss.xml',
   ]
 
 
@@ -56,7 +57,7 @@ posdict = defaultdict(list)
 for k,v in tag_words: posdict[k].append(v)
 
 #print nouns
-outfile = open('nouns.txt', 'w')
+outfile = open('../pos/nouns.txt', 'w')
 for noun in posdict['NN']+posdict['NNS']: print>>outfile, noun
 outfile.close
 
