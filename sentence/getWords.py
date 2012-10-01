@@ -10,8 +10,12 @@ word lists in a sqlite database.
 
 from numpy.random import rand
 from numpy import floor
-from pablo.sentence.models import *
 import warnings
+
+from pablo.sentence.models import *
+from pablo.helperfunctions import formatwarning
+
+warnings.formatwarning = formatwarning
 
 def getArticle():
     nwords = Article.objects.count()
