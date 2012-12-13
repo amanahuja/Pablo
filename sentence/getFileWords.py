@@ -94,8 +94,11 @@ def getAdverb():
 def formatString(sentence):
     ss = ''
     for ii in range(len(sentence)):
+        if ii > 0 and sentence[ii-1] == ',' and sentence[ii] == ',':
+            continue
         ss += sentence[ii]
-        ss += ' '
+        if ii < len(sentence)-1 and sentence[ii+1] != ',':
+            ss += ' '
     ss = ss.replace('\n', ' ')
     ss = ss.capitalize()
     ss = ss.strip()
