@@ -82,8 +82,10 @@ def getNounPhrase(simple = False):
     if choose < 75:
         NP.structure += getOrnateNoun()
     else:
-        NP.structure = getOrnateNoun()     
+        NP.structure = getOrnateNoun()
         NP.structure += getFancyNoun()
+        # Comma structure when Fancy Noun contains Ornate Noun
+        NP.structure.append(Comma())
     #print 'NP structure: ', NP.listStructure()
         
     #Obtain the words for the Noun Phrase
@@ -216,10 +218,7 @@ def NPRules(NP):
             if ((aa == 'a') or (aa == 'e') or (aa == 'i') or (aa == 'o') or  
                 (aa == 'u') or (aa == 'y')):
                 NP.content[ind] = 'an'
-    
-    #TODO: Comma rule
-    # Comma structure when Fancy Noun contains Ornate Noun?
-      
+                
     return NP
     
 def getWord(pos):
@@ -237,7 +236,7 @@ def getWord(pos):
     elif pos == 'pro':
         word_sel = RelPronoun()
     elif pos == 'adv':
-        word_sel = Adverb()    
+        word_sel = Adverb()
 
     else: 
         #Exception -- invalid part of speech

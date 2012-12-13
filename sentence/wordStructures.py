@@ -128,3 +128,9 @@ class Adverb(Word):
     def fetch(self):
         self.word = getAdverb()    
 
+class Comma(Word):
+    def __init__(self):
+        self.type = 'comma'
+        self.word = ','
+
+    
